@@ -1,7 +1,8 @@
 # RaceDay — Part 3: MVC Web Application
 
-
-
+**Module:** PROG6212 Programming 2B  
+**Stack:** ASP.NET Core MVC + Part 2 REST API + SQL Server + Azure Blob Storage + Docker + GitHub Actions  
+**Framework:** .NET 8
 RaceDay Part 3 adds the MVC web front end to the existing Part 2 API. The MVC application does not connect to SQL Server and contains no duplicate database/business rules: it calls the API for registration, authentication, event data, categories, enrolments, results, profile changes and image uploads.
 
 ## Project structure
