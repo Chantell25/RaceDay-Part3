@@ -130,17 +130,3 @@ docker compose down -v
 The workflow at `.github/workflows/dotnet.yml` checks the required project structure, restores the solution, builds the API and MVC projects, and runs the automated tests on pushes and pull requests. Confirm the workflow succeeds in your own GitHub repository and capture a genuine screenshot of the green run for submission.
 
 
-## Before submission
-
-- [ ] Configure and test a real Azure Storage account; a blank connection string intentionally disables uploads.
-- [ ] Run the SQL schema or the two ALTER TABLE statements against the correct database.
-- [ ] Run `dotnet restore`, `dotnet build` and `dotnet test` on your machine.
-- [ ] Test both user roles and confirm protected pages redirect when logged out.
-- [ ] Test invalid registration/login, duplicate enrolment, full categories and invalid image files.
-- [ ] Confirm uploaded images appear in the browser and URLs are saved in SQL Server.
-- [ ] Run `docker compose up --build` on your machine and verify the containerised application.
-- [ ] Push at least 20 meaningful commits to your own Part 3 branch. Do not fabricate commit history.
-- [ ] Confirm GitHub Actions has a green build.
-- [ ] Add your actual GitHub Actions screenshot and unlisted YouTube demonstration link before submission.
-
-**Verification note:** This workspace did not have the .NET SDK installed, so a local `dotnet build`, test run, Azure upload or Docker run could not be executed here. Run the commands above in Visual Studio/Docker Desktop before submitting. Do not describe these environment-dependent checks as passed until you have run them.
