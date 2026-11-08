@@ -1,0 +1,102 @@
+
+digraph RaceDayERD {
+  graph [rankdir=LR, bgcolor="white", pad="0.3", nodesep="0.5", ranksep="0.9",
+         fontname="Arial", labelloc="t", label="RaceDay System — Entity Relationship Diagram"];
+  node [shape=plain, fontname="Arial"];
+  edge [fontname="Arial", fontsize=10, color="#444444", arrowsize=0.8];
+
+  UserAccount [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#D9EAF7"><B>UserAccount</B></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B> UserId : INT IDENTITY</TD></TR>
+      <TR><TD ALIGN="LEFT">FirstName : NVARCHAR(50)</TD></TR>
+      <TR><TD ALIGN="LEFT">LastName : NVARCHAR(50)</TD></TR>
+      <TR><TD ALIGN="LEFT">Email : NVARCHAR(150) UNIQUE</TD></TR>
+      <TR><TD ALIGN="LEFT">PasswordHash : NVARCHAR(255)</TD></TR>
+      <TR><TD ALIGN="LEFT">Role : Organiser | Participant</TD></TR>
+      <TR><TD ALIGN="LEFT">CreatedAt : DATETIME2</TD></TR>
+      <TR><TD ALIGN="LEFT">IsActive : BIT</TD></TR>
+    </TABLE>
+  >];
+
+  OrganiserProfile [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#D9EAF7"><B>OrganiserProfile</B></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B> OrganiserId : INT IDENTITY</TD></TR>
+      <TR><TD ALIGN="LEFT"><B>FK</B> UserId : INT UNIQUE</TD></TR>
+      <TR><TD ALIGN="LEFT">OrganisationName : NVARCHAR(120)</TD></TR>
+      <TR><TD ALIGN="LEFT">ContactNumber : NVARCHAR(30)</TD></TR>
+    </TABLE>
+  >];
+
+  ParticipantProfile [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#D9EAF7"><B>ParticipantProfile</B></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B> ParticipantId : INT IDENTITY</TD></TR>
+      <TR><TD ALIGN="LEFT"><B>FK</B> UserId : INT UNIQUE</TD></TR>
+      <TR><TD ALIGN="LEFT">DateOfBirth : DATE</TD></TR>
+      <TR><TD ALIGN="LEFT">EmergencyContactName : NVARCHAR(100)</TD></TR>
+      <TR><TD ALIGN="LEFT">EmergencyContactNumber : NVARCHAR(30)</TD></TR>
+    </TABLE>
+  >];
+
+  Event [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#D9EAF7"><B>Event</B></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B> EventId : INT IDENTITY</TD></TR>
+      <TR><TD ALIGN="LEFT"><B>FK</B> OrganiserId : INT</TD></TR>
+      <TR><TD ALIGN="LEFT">EventName : NVARCHAR(150)</TD></TR>
+      <TR><TD ALIGN="LEFT">Description : NVARCHAR(500)</TD></TR>
+      <TR><TD ALIGN="LEFT">EventDate : DATE</TD></TR>
+      <TR><TD ALIGN="LEFT">Venue : NVARCHAR(150)</TD></TR>
+      <TR><TD ALIGN="LEFT">City : NVARCHAR(80)</TD></TR>
+      <TR><TD ALIGN="LEFT">Status : NVARCHAR(20)</TD></TR>
+    </TABLE>
+  >];
+
+  Category [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#D9EAF7"><B>Category</B></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B> CategoryId : INT IDENTITY</TD></TR>
+      <TR><TD ALIGN="LEFT"><B>FK</B> EventId : INT</TD></TR>
+      <TR><TD ALIGN="LEFT">CategoryName : NVARCHAR(100)</TD></TR>
+      <TR><TD ALIGN="LEFT">DistanceKm : DECIMAL(6,2)</TD></TR>
+      <TR><TD ALIGN="LEFT">MaxParticipants : INT</TD></TR>
+      <TR><TD ALIGN="LEFT">EntryFee : DECIMAL(10,2)</TD></TR>
+    </TABLE>
+  >];
+
+  Enrollment [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#D9EAF7"><B>Enrollment</B></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B> EnrollmentId : INT IDENTITY</TD></TR>
+      <TR><TD ALIGN="LEFT"><B>FK</B> EventId : INT</TD></TR>
+      <TR><TD ALIGN="LEFT"><B>FK</B> CategoryId : INT</TD></TR>
+      <TR><TD ALIGN="LEFT"><B>FK</B> ParticipantId : INT</TD></TR>
+      <TR><TD ALIGN="LEFT">EnrollmentDate : DATETIME2</TD></TR>
+      <TR><TD ALIGN="LEFT">RaceNumber : INT UNIQUE</TD></TR>
+      <TR><TD ALIGN="LEFT">Status : NVARCHAR(20)</TD></TR>
+    </TABLE>
+  >];
+
+  Result [label=<
+    <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="6">
+      <TR><TD BGCOLOR="#D9EAF7"><B>Result</B></TD></TR>
+      <TR><TD ALIGN="LEFT"><B>PK</B> ResultId : INT IDENTITY</TD></TR>
+      <TR><TD ALIGN="LEFT"><B>FK</B> EnrollmentId : INT UNIQUE</TD></TR>
+      <TR><TD ALIGN="LEFT">FinishTime : TIME(0)</TD></TR>
+      <TR><TD ALIGN="LEFT">Position : INT</TD></TR>
+      <TR><TD ALIGN="LEFT">ResultStatus : NVARCHAR(20)</TD></TR>
+      <TR><TD ALIGN="LEFT">RecordedAt : DATETIME2</TD></TR>
+    </TABLE>
+  >];
+
+  UserAccount -> OrganiserProfile [label="1 : 0..1"];
+  UserAccount -> ParticipantProfile [label="1 : 0..1"];
+  OrganiserProfile -> Event [label="1 : many"];
+  Event -> Category [label="1 : many"];
+  Event -> Enrollment [label="1 : many"];
+  Category -> Enrollment [label="1 : many"];
+  ParticipantProfile -> Enrollment [label="1 : many"];
+  Enrollment -> Result [label="1 : 0..1"];
+}

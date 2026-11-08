@@ -1,0 +1,36 @@
+RACEDAY PART 2 - START HERE
+
+IMPORTANT: You do NOT run every class separately. Most .cs files are models,
+services, or controllers used by the application. The runnable web application
+is RaceDay.Api. The tests are run using RaceDay.Tests.
+
+RECOMMENDED VISUAL STUDIO STEPS
+1. Extract the entire ZIP to a normal folder (not inside the ZIP preview).
+2. Open RaceDay.sln in Visual Studio 2022.
+3. In Solution Explorer, right-click RaceDay.Api and select Set as Startup Project.
+   RaceDay.Api should appear bold. Do not select a controller/model class.
+4. Make sure the .NET 8 SDK is installed and SQL Server LocalDB is available,
+   or change the RaceDay connection string in RaceDay.Api/appsettings.json.
+5. Run docs/RaceDayDB.sql in SQL Server Management Studio only if you need to
+   create/reset the database. It may drop/recreate tables; back up data first.
+6. Press F5 or click the green Run button while RaceDay.Api is the startup project.
+7. Open https://localhost:7157/swagger if Swagger does not open automatically.
+8. To run tests, use Test > Run All Tests or run RUN-TESTS.bat.
+
+QUICK START
+- Double-click RUN-RACEDAY.bat to restore, build, and start the API from Windows.
+- Double-click RUN-TESTS.bat to execute the automated tests.
+
+WHAT THE PROJECTS/CLASSES DO
+- RaceDay.Api: the web API application; this is what you start to use Swagger.
+- Controllers: HTTP endpoints/routes; they are invoked by requests, not launched individually.
+- Models/Entities.cs: entity classes matching the database tables.
+- Data/RaceDayDbContext.cs: Entity Framework Core database mapping and access.
+- Services/PasswordService.cs: password hashing and verification.
+- Dtos: request/response data shapes.
+- RaceDay.Tests: automated tests; run tests rather than pressing F5 on a test class.
+
+If startup fails, read the first error shown in Visual Studio. Common causes are a
+missing .NET 8 SDK, SQL Server LocalDB not installed/running, a wrong connection string,
+or a port already in use. The project has not been verified on your specific PC;
+run build and tests locally before submitting.

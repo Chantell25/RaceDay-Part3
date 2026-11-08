@@ -1,0 +1,7 @@
+using System.ComponentModel.DataAnnotations;
+namespace RaceDay.Mvc.Models;
+public class LoginVm { [Required,EmailAddress] public string Email {get;set;}=""; [Required] public string Password {get;set;}=""; }
+public class RegisterVm { [Required] public string FirstName {get;set;}=""; [Required] public string LastName {get;set;}=""; [Required,EmailAddress] public string Email {get;set;}=""; [Required,MinLength(8)] public string Password {get;set;}=""; [Required] public string Role {get;set;}="Participant"; public string? OrganisationName {get;set;} public string? ContactNumber {get;set;} public DateTime? DateOfBirth {get;set;} }
+public class EventVm { public int EventId {get;set;} [Required,MaxLength(150)] public string EventName {get;set;}=""; [MaxLength(500)] public string? Description {get;set;} [Required] public DateTime EventDate {get;set;}=DateTime.Now.AddDays(30); [Required] public string Venue {get;set;}=""; [Required] public string City {get;set;}=""; public string Status {get;set;}="Planned"; [Required] public string EventType {get;set;}="Road Race"; public IFormFile? Banner {get;set;} }
+public class CategoryVm { [Required] public string CategoryName {get;set;}=""; [Range(0.1,1000)] public decimal DistanceKm {get;set;} [Range(1,100000)] public int MaxParticipants {get;set;} [Range(0,100000)] public decimal EntryFee {get;set;} }
+public class ProfileVm { [Required] public string FirstName {get;set;}=""; [Required] public string LastName {get;set;}=""; public IFormFile? Picture {get;set;} }
