@@ -15,6 +15,7 @@ RaceDay Part 3 adds the MVC web front end to the existing Part 2 API. The MVC ap
 - `docker-compose.yml` — SQL Server, API and MVC containers.
 - `.github/workflows/dotnet.yml` — CI validation and .NET 8 builds/tests.
 
+
 ## Features
 
 ### Authentication and navigation
@@ -128,18 +129,6 @@ docker compose down -v
 
 The workflow at `.github/workflows/dotnet.yml` checks the required project structure, restores the solution, builds the API and MVC projects, and runs the automated tests on pushes and pull requests. Confirm the workflow succeeds in your own GitHub repository and capture a genuine screenshot of the green run for submission.
 
-## Suggested demonstration video plan
-
-1. Introduce the RaceDay platform and explain the MVC → API → SQL Server architecture.
-2. Register and log in as an Organiser; show role-specific navigation.
-3. Create an event, upload its banner, edit it and add a distance category.
-4. Open enrolments and demonstrate participant/category details and result entry.
-5. Log out; register/login as a Participant.
-6. Browse/filter events, open event details, enrol, view My Events and My Results.
-7. Update the profile and upload a profile picture.
-8. Explain that MVC uploads go through the API to Azure Blob Storage.
-9. Show the Dockerfile/compose setup and start the app in Docker.
-10. Show the GitHub Actions green build and briefly explain the project structure.
 
 ## Before submission
 
