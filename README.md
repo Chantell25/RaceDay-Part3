@@ -5,7 +5,6 @@
 **Framework:** .NET 8
 RaceDay Part 3 adds the MVC web front end to the existing Part 2 API. The MVC application does not connect to SQL Server and contains no duplicate database/business rules: it calls the API for registration, authentication, event data, categories, enrolments, results, profile changes and image uploads.
 
-
 ## Project structure
 
 - `RaceDay.Api/` — existing REST API, extended with Azure Blob image upload endpoints.
