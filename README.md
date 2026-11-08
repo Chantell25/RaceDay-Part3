@@ -126,6 +126,7 @@ docker compose down -v
 ```
 
 ## GitHub Actions
+![Uploading image.png…]()
 
 The workflow at `.github/workflows/dotnet.yml` checks the required project structure, restores the solution, builds the API and MVC projects, and runs the automated tests on pushes and pull requests. Confirm the workflow succeeds in your own GitHub repository and capture a genuine screenshot of the green run for submission.
 
